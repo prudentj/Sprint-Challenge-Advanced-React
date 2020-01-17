@@ -1,5 +1,5 @@
 import React from 'react';
-import {render} from 'yarn ;
+import {render} from 'yarn';
 import ReactDOM from 'react-dom';
 import App from './App';
 import DisplayPerson from './components/DisplayPerson';
