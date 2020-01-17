@@ -1,26 +1,47 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import axios from 'axios';
+import DisplayPerson from './components/DisplayPerson';
+import useDarkMode from './hooks/useDarkMode';
+import NavBar from './components/NavBar';
+class App extends React.Component {
+	constructor() {
+		super();
+		this.state = {
+			people: []
+		};
+	}
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	componentDidMount() {
+		//Events go here
+		axios
+			.get('http://localhost:5000/api/players')
+			.then(res => {
+				this.setState({
+					people: res.data
+				});
+				console.log(this.state.people);
+			})
+			.catch(err => console.log(err));
+	}
+
+	render() {
+		return (
+			<div>
+				<NavBar />
+				{this.state.people.map(el => {
+					return (
+						<DisplayPerson
+							name={el.name}
+							country={el.country}
+							searches={el.searches}
+							id={el.id}
+						/>
+					);
+				})}
+			</div>
+		);
+	}
 }
 
 export default App;
