@@ -1,5 +1,5 @@
 import React from 'react';
-import {render} from 'yarn';
+import {render} from '@testing-library/react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import DisplayPerson from './components/DisplayPerson';
@@ -12,7 +12,7 @@ it('renders without crashing', () => {
 });
 
 test('Results were rendered', () => {
-	const container = render(<DisplayPerson />);
+	const container = render(<App />);
 	container.getAllBy('Name:');
 	container.getAllBy('Country:');
 	container.getAllBy('Searches:');
@@ -20,5 +20,5 @@ test('Results were rendered', () => {
 
 test('NavBar', () => {
 	const container = render(<NavBar />);
-	container.getTextBy('Dark');
+	container.getTextBy('Dark Mode');
 });

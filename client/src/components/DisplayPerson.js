@@ -1,5 +1,4 @@
 import React from 'react';
-import useDarkMode from '../hooks/useDarkMode';
 
 function DisplayPerson(props) {
 	return (
